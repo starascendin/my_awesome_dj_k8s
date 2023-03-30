@@ -15,6 +15,7 @@ urlpatterns = [
     # User management
     path("users/", include("my_awesome_project.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
+    path("health", include('health_check.urls')),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -39,7 +40,7 @@ if settings.DEBUG:
             kwargs={"exception": Exception("Page not Found")},
         ),
         path("500/", default_views.server_error),
-        path("health", include('health_check.urls')),
+        
     ]
     if "debug_toolbar" in settings.INSTALLED_APPS:
         import debug_toolbar
