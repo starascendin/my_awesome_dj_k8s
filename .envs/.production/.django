@@ -39,8 +39,13 @@ SENTRY_DSN=
 
 # Redis
 # ------------------------------------------------------------------------------
-REDIS_URL=redis://redis:6379/0
-
+# REDIS_URL=redis://redis:6379/0
+# BL: swapping to DO redis
+# REDIS_URL=rediss://default:AVNS_9ZcQQxUCrLaSY41kwB1@private-db-redis-nyc3-67768-do-user-10228058-0.b.db.ondigitalocean.com:25061/0
+REDIS_URL=rediss://default:AVNS_9ZcQQxUCrLaSY41kwB1@db-redis-nyc3-67768-do-user-10228058-0.b.db.ondigitalocean.com:25061/0
+# REDIS_URL="rediss://default:AVNS_9ZcQQxUCrLaSY41kwB1@private-db-redis-nyc3-67768-do-user-10228058-0.b.db.ondigitalocean.com:25061/0"
+# CELERY_BROKER_URL="rediss://default:AVNS_9ZcQQxUCrLaSY41kwB1@private-db-redis-nyc3-67768-do-user-10228058-0.b.db.ondigitalocean.com:25061/0?ssl_cert_reqs=CERT_NONE"
+CELERY_BROKER_URL=rediss://default:AVNS_9ZcQQxUCrLaSY41kwB1@db-redis-nyc3-67768-do-user-10228058-0.b.db.ondigitalocean.com:25061/0?ssl_cert_reqs=CERT_NONE
 # Celery
 # ------------------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
-# PostgreSQL
+# PostgreSQL -- on SUPABASE
 # ------------------------------------------------------------------------------
-POSTGRES_HOST=postgres
+POSTGRES_HOST=db.uukkuoxgayujrukubywa.supabase.co
 POSTGRES_PORT=5432
 POSTGRES_DB=my_awesome_project
 POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
+POSTGRES_PASSWORD=Q4bjRxdd503AR40J

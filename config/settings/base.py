@@ -74,8 +74,8 @@ THIRD_PARTY_APPS = [
     'health_check',                             # required
     'health_check.db',                          # stock Django health checkers
     'health_check.cache',
-    'health_check.contrib.celery',              # requires celery
-    'health_check.contrib.celery_ping',         # requires celery
+    # 'health_check.contrib.celery',              # requires celery
+    # 'health_check.contrib.celery_ping',         # requires celery
 
 ]
 
@@ -262,6 +262,22 @@ if USE_TZ:
     CELERY_TIMEZONE = TIME_ZONE
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-broker_url
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+
+
+# BL: for rediss
+import urllib.parse
+import ssl
+parsed_url = urllib.parse.urlparse(CELERY_BROKER_URL)
+query_params = urllib.parse.parse_qs(parsed_url.query)
+query_params["ssl_cert_reqs"] = ["CERT_NONE"]
+new_query = urllib.parse.urlencode(query_params, doseq=True)
+new_url = parsed_url._replace(query=new_query).geturl()
+
+CELERY_BROKER_URL = new_url
+
+
+print("#CELERY_BROKER_URL", CELERY_BROKER_URL)
+
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#std:setting-result_backend
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 # https://docs.celeryq.dev/en/stable/userguide/configuration.html#result-extended
@@ -310,3 +326,14 @@ SOCIALACCOUNT_FORMS = {"signup": "my_awesome_project.users.forms.UserSocialSignu
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+import ssl
+# _broker_url = f'rediss://:{REDIS_PASS}@{REDIS_HOST_PORT_URL}'
+_broker_url = new_url
+BROKER_URL = _broker_url
+CELERY_RESULT_BACKEND = _broker_url
+BROKER_USE_SSL={'ssl_cert_reqs': ssl.CERT_NONE}
+CELERY_REDIS_BACKEND_USE_SSL={'ssl_cert_reqs': ssl.CERT_NONE}
+
+print('#DEBUG CELERY_RESULT_BACKEND', CELERY_RESULT_BACKEND)
+print('#DEBUG CELERY_REDIS_BACKEND_USE_SSL', CELERY_REDIS_BACKEND_USE_SSL)
