@@ -34,7 +34,7 @@ CACHES = {
             "CONNECTION_POOL_KWARGS": {
                 "ssl_cert_reqs": None,
                 # "ssl_cert_reqs": ssl.CERT_NONE
-                },            
+                },
         },
     }
 }
@@ -76,7 +76,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # MEDIA
 # ------------------------------------------------------------------------------
 DEFAULT_FILE_STORAGE = "my_awesome_project.utils.storages.MediaRootGoogleCloudStorage"
-MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
+# MEDIA_URL = f"https://storage.googleapis.com/{GS_BUCKET_NAME}/media/"
 
 # EMAIL
 # ------------------------------------------------------------------------------
