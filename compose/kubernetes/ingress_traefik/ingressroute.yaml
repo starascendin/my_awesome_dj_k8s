@@ -1,0 +1,37 @@
+# ingressroute.yaml
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: web-router
+  namespace: test-ccdj
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: "Host(`ikigaidojo.io`) || Host(`www.ikigaidojo.io`)"
+    kind: Rule
+    middlewares:
+      - name: redirect
+      - name: csrf
+    services:
+      - name: django
+        port: 5000
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: web-secure-router
+  namespace: test-ccdj
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: "Host(`ikigaidojo.io`) || Host(`www.ikigaidojo.io`)"
+    kind: Rule
+    middlewares:
+      - name: csrf
+    services:
+      - name: django
+        port: 5000
+  tls:
+    certResolver: letsencrypt

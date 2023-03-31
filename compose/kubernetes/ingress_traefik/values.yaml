@@ -1,0 +1,35 @@
+# values.yaml
+globalArguments:
+  - "--log.level=INFO"
+
+deployment:
+  enabled: true
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+  celeryflower:
+    address: ":5555"
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: "bryan@ikigaidojo.io"
+      storage: "/etc/traefik/acme/acme.json"
+      httpChallenge:
+        entryPoint: "web"
+
+providers:
+  kubernetesIngress:
+    publishedService:
+      enabled: true
+
+middleware:
+  redirectScheme:
+    scheme: "https"
+    permanent: true
+
+ingressRoute:
+  enabled: true
