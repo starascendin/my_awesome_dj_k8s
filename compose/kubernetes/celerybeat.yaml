@@ -27,7 +27,7 @@ spec:
             name: secrets-production-django
         - secretRef:
             name: secrets-production-postgres
-        image: registry.digitalocean.com/aininjas-docker-registry/gallery_production_celerybeat
+        image: registry.digitalocean.com/aininjas-docker-registry/my_awesome_project_production_celerybeat
         name: celerybeat
         env:
           - name: CELERY_BROKER_URL
