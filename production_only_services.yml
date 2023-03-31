@@ -11,7 +11,7 @@ services:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
 
-    image: registry.digitalocean.com/my-awsome-project/my_awesome_project_production_django:latest
+    image: registry.digitalocean.com/aininjas-docker-registry/my_awesome_project_production_django:latest
     # depends_on:
     #   - postgres
     #   - redis
@@ -24,7 +24,7 @@ services:
   #   build:
   #     context: .
   #     dockerfile: ./compose/production/postgres/Dockerfile
-  #   image: registry.digitalocean.com/my-awsome-project/my_awesome_project_production_postgres:latest
+  #   image: registry.digitalocean.com/aininjas-docker-registry/my_awesome_project_production_postgres:latest
   #   volumes:
   #     - production_postgres_data:/var/lib/postgresql/data
   #     - production_postgres_data_backups:/backups
@@ -35,7 +35,7 @@ services:
   #   build:
   #     context: .
   #     dockerfile: ./compose/production/traefik/Dockerfile
-  #   image: registry.digitalocean.com/my-awsome-project/my_awesome_project_production_traefik:latest
+  #   image: registry.digitalocean.com/aininjas-docker-registry/my_awesome_project_production_traefik:latest
   #   depends_on:
   #     - django
   #   volumes:
@@ -50,15 +50,15 @@ services:
 
   celeryworker:
     <<: *django
-    image: registry.digitalocean.com/my-awsome-project/my_awesome_project_production_celeryworker:latest
+    image: registry.digitalocean.com/aininjas-docker-registry/my_awesome_project_production_celeryworker:latest
     command: /start-celeryworker
 
   celerybeat:
     <<: *django
-    image: registry.digitalocean.com/my-awsome-project/my_awesome_project_production_celerybeat:latest
+    image: registry.digitalocean.com/aininjas-docker-registry/my_awesome_project_production_celerybeat:latest
     command: /start-celerybeat
 
   flower:
     <<: *django
-    image: registry.digitalocean.com/my-awsome-project/my_awesome_project_production_flower:latest
+    image: registry.digitalocean.com/aininjas-docker-registry/my_awesome_project_production_flower:latest
     command: /start-flower
