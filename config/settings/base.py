@@ -74,8 +74,8 @@ THIRD_PARTY_APPS = [
     'health_check',                             # required
     'health_check.db',                          # stock Django health checkers
     'health_check.cache',
-    # 'health_check.contrib.celery',              # requires celery
-    # 'health_check.contrib.celery_ping',         # requires celery
+    'health_check.contrib.celery',              # requires celery
+    'health_check.contrib.celery_ping',         # requires celery
 
 ]
 
